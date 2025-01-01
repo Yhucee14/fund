@@ -7,6 +7,8 @@ pragma solidity 0.8.24;
 
 import {PriceConverter} from './PriceConverter.sol';
 
+error NotOwner();
+
 contract FundMe {
     using PriceConverter for uint256;
     uint256 public constant MINIMUM_USD = 5e18;
@@ -39,7 +41,10 @@ contract FundMe {
        }
 
        modifier onlyOwner(){
-        require(msg.sender == owner, "You are not the owner of this contract!"); //checks if the sender is the contract creator or not
+        //require(msg.sender == owner, "You are not the owner of this contract!"); //checks if the sender is the contract creator or not
+        if(msg.sender != owner){
+            revert NotOwner();
+        }
         _;
        }
 }
