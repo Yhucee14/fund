@@ -14,6 +14,11 @@ contract FundMe {
     address[] public funders;
     mapping(address funder => uint256 amountFunded) public addressToAmountFunded;
 
+    address public owner;
+    constructor() {
+        owner = msg.sender; //initialize the creator as the contract owner
+    }
+
     function fund() public payable {
         require(msg.value.getConversionRate() >= minimumUsd , 'Didnt send enough Eth');
         funders.push(msg.sender);
@@ -21,17 +26,16 @@ contract FundMe {
     }
 
     function withdraw() public {
+        require(msg.sender == owner, 'You are not the owner');
         //for(starting index, ending index, step amount
         for(uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++){
            address funder = funders[funderIndex];
            addressToAmountFunded[funder] = 0;
         }
         funders = new address[](0); //reset the array after withdrawal
-        //withdraw the funds
-
-        //how do we actually send funds to whoever called the withdraw function?
-        //transfer, send or call
-
-        
-    }
+     
+   //call
+    (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
+    require(callSuccess, "Call failed");
+       }
 }
