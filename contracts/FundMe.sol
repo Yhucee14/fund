@@ -26,5 +26,12 @@ contract FundMe {
            address funder = funders[funderIndex];
            addressToAmountFunded[funder] = 0;
         }
+        funders = new address[](0); //reset the array after withdrawal
+        //withdraw the funds
+
+        //how do we actually send funds to whoever called the withdraw function?
+        //transfer, send or call
+
+        
     }
 }
