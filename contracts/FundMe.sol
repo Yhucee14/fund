@@ -9,7 +9,7 @@ import {PriceConverter} from './PriceConverter.sol';
 
 contract FundMe {
     using PriceConverter for uint256;
-    uint256 public minimumUsd = 5e18;
+    uint256 public constant MINIMUM_USD = 5e18;
 
     address[] public funders;
     mapping(address funder => uint256 amountFunded) public addressToAmountFunded;
@@ -20,7 +20,7 @@ contract FundMe {
     }
 
     function fund() public payable {
-        require(msg.value.getConversionRate() >= minimumUsd , 'Didnt send enough Eth');
+        require(msg.value.getConversionRate() >= MINIMUM_USD , 'Didnt send enough Eth');
         funders.push(msg.sender);
         addressToAmountFunded[msg.sender] += msg.value;
     }
