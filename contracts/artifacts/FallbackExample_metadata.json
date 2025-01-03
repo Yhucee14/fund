@@ -6,6 +6,10 @@
 	"output": {
 		"abi": [
 			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
 				"inputs": [],
 				"name": "result",
 				"outputs": [
@@ -51,11 +55,11 @@
 	},
 	"sources": {
 		"contracts/FallbackExample.sol": {
-			"keccak256": "0xd85e60b20bf6dcb0d3df3fe7a5916ee0719ca87eb785586077a95cb053d07c92",
+			"keccak256": "0xa1c0fe3f985e5b74e247b580637cd2b9140912d2088f5d0258fa56ff973e30cd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://029a2e1aa5c653acc3f906ca2b85b2d7bb951946a1be53e4565249e64755aad0",
-				"dweb:/ipfs/QmTzDPLEz9hB4hKu39qoxEu5CTU3KDhD46aVwKwX4TL3UA"
+				"bzz-raw://c27d9d4c4e84cd649dafe1277f46cd2c77f42e2d274c62dc0f07f3526d48adb3",
+				"dweb:/ipfs/QmRGRa4qG6uEG4PR9mp8d2vQ4R3YKzK4xcFtVL6YdXwfdo"
 			]
 		}
 	},
